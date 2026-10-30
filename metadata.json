@@ -1,0 +1,8 @@
+{
+  "name": "Remix AI Pembuat Soal Guru v2",
+  "description": "Ubah materi pembelajaran menjadi soal ujian berkualitas dengan AI dan buat kuis Google Form secara otomatis.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}

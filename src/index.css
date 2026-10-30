@@ -1,0 +1,99 @@
+@import "tailwindcss";
+
+:root {
+  --primary: #2563EB;
+  --secondary: #0F172A;
+  --academic-navy: #0F172A;
+  --academic-blue: #1E3A8A;
+}
+
+html,
+body {
+  width: 100%;
+  max-width: 100vw;
+  overflow-x: clip;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+@layer base {
+  body {
+    font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+    color: #0F172A;
+    background-color: #F8FAFC;
+    -webkit-tap-highlight-color: transparent;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Outfit', 'Plus Jakarta Sans', system-ui, sans-serif;
+    letter-spacing: -0.02em;
+  }
+  img, svg, video, canvas, audio, iframe, embed, object {
+    max-width: 100%;
+  }
+}
+
+.font-outfit {
+  font-family: 'Outfit', 'Plus Jakarta Sans', system-ui, sans-serif;
+}
+
+.font-serif-exam {
+  font-family: 'Times New Roman', Times, 'Merriweather', Georgia, serif;
+}
+
+.card-shadow {
+  box-shadow: 0 1px 3px 0 rgb(15 23 42 / 0.05), 0 1px 2px -1px rgb(15 23 42 / 0.05);
+}
+
+.card-shadow-hover {
+  box-shadow: 0 10px 25px -5px rgb(15 23 42 / 0.07), 0 8px 10px -6px rgb(15 23 42 / 0.03);
+}
+
+.card-elevation-high {
+  box-shadow: 0 20px 25px -5px rgb(15 23 42 / 0.12), 0 8px 10px -6px rgb(15 23 42 / 0.06);
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Print Styling for Official School Examination Paper */
+@media print {
+  body {
+    background: #ffffff !important;
+    color: #000000 !important;
+  }
+  header, nav, .no-print, button, .mobile-bottom-nav {
+    display: none !important;
+  }
+  .print-only {
+    display: block !important;
+  }
+  .exam-paper {
+    border: none !important;
+    box-shadow: none !important;
+    padding: 0 !important;
+  }
+}
+
+@keyframes pulse-slow {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.85; transform: scale(1.02); }
+}
+
+.animate-pulse-slow {
+  animation: pulse-slow 3s ease-in-out infinite;
+}
+
+
+

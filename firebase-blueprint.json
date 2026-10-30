@@ -1,0 +1,95 @@
+{
+  "entities": {
+    "UserProfile": {
+      "title": "UserProfile",
+      "description": "Profil guru pengguna aplikasi",
+      "type": "object",
+      "properties": {
+        "uid": { "type": "string" },
+        "displayName": { "type": "string" },
+        "email": { "type": "string" },
+        "photoURL": { "type": "string" },
+        "schoolName": { "type": "string" },
+        "updatedAt": { "type": "string" }
+      },
+      "required": ["uid", "email"]
+    },
+    "QuestionSet": {
+      "title": "QuestionSet",
+      "description": "Paket bank soal yang dibuat dan disimpan oleh guru",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "userId": { "type": "string" },
+        "title": { "type": "string" },
+        "subject": { "type": "string" },
+        "grade": { "type": "string" },
+        "semester": { "type": "string" },
+        "material": { "type": "string" },
+        "learningObjective": { "type": "string" },
+        "difficultyType": { "type": "string" },
+        "questionType": { "type": "string" },
+        "totalPoints": { "type": "number" },
+        "authorEmail": { "type": "string" },
+        "authorName": { "type": "string" },
+        "questions": { "type": "array" },
+        "createdAt": { "type": "string" },
+        "updatedAt": { "type": "string" }
+      },
+      "required": ["id", "userId", "title", "questions"]
+    },
+    "GoogleFormHistory": {
+      "title": "GoogleFormHistory",
+      "description": "Riwayat pembuatan Google Form oleh guru",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "userId": { "type": "string" },
+        "formId": { "type": "string" },
+        "title": { "type": "string" },
+        "subject": { "type": "string" },
+        "grade": { "type": "string" },
+        "totalQuestions": { "type": "number" },
+        "responderUrl": { "type": "string" },
+        "editUrl": { "type": "string" },
+        "createdAt": { "type": "string" }
+      },
+      "required": ["id", "userId", "formId", "title", "editUrl"]
+    },
+    "SystemSettings": {
+      "title": "SystemSettings",
+      "description": "Pengaturan global aplikasi termasuk logo sekolah/aplikasi dan profil lembaga",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "appLogoUrl": { "type": "string" },
+        "schoolName": { "type": "string" },
+        "schoolCity": { "type": "string" },
+        "teacherName": { "type": "string" },
+        "teacherNip": { "type": "string" },
+        "principalName": { "type": "string" },
+        "principalNip": { "type": "string" },
+        "academicYear": { "type": "string" },
+        "updatedAt": { "type": "string" }
+      }
+    }
+  },
+  "firestore": {
+    "/system/{settingId}": {
+      "schema": "SystemSettings",
+      "description": "Pengaturan sistem dan logo aplikasi/sekolah global yang diakses antar-perangkat"
+    },
+    "/users/{userId}": {
+      "schema": "UserProfile",
+      "description": "Data profil guru pemilik akun"
+    },
+    "/users/{userId}/bankSoal/{setId}": {
+      "schema": "QuestionSet",
+      "description": "Bank soal pribadi milik guru"
+    },
+    "/users/{userId}/formHistory/{historyId}": {
+      "schema": "GoogleFormHistory",
+      "description": "Riwayat Google Form kuis yang dibuat oleh guru"
+    }
+  }
+}
