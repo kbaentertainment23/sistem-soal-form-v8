@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Remix AI Pembuat Soal Guru v2</title>
+    <!-- Pencegahan error WebSocket Vite HMR & Warning Firestore di Preview Sandbox -->
+    <script>
+      (function () {
+        // Filter benign Firestore unprovisioned database notice
+        var originalWarn = console.warn;
+        console.warn = function () {
+          var args = Array.prototype.slice.call(arguments);
+          var text = args.map(function (a) {
+            return typeof a === 'string' ? a : (a && a.message ? a.message : String(a));
+          }).join(' ');
+          if (
+            text.indexOf('@firebase/firestore') !== -1 ||
+            text.indexOf("Database '(default)' not found") !== -1 ||
+            text.indexOf('Firestore cloud sync fallback') !== -1 ||
+            text.indexOf('Could not sync') !== -1
+          ) {
+            return;
+          }
+          originalWarn.apply(console, args);
+        };
+
+        // Filter benign Vite client HMR websocket errors in sandbox environment
+        var originalError = console.error;
+        console.error = function () {
+          var args = Array.prototype.slice.call(arguments);
+          var text = args.map(function (a) {
+            return typeof a === 'string' ? a : (a && a.message ? a.message : String(a));
+          }).join(' ');
+          if (
+            text.indexOf('[vite] failed to connect to websocket') !== -1 ||
+            (text.indexOf('WebSocket') !== -1 && (text.indexOf('closed') !== -1 || text.indexOf('failed') !== -1))
+          ) {
+            return;
+          }
+          originalError.apply(console, args);
+        };
+
+        function isWsError(err) {
+          if (!err) return false;
+          var str = typeof err === 'string' ? err : (err.message || err.reason || String(err));
+          return str.indexOf('WebSocket') !== -1 || str.indexOf('websocket') !== -1;
+        }
+        window.addEventListener('unhandledrejection', function (event) {
+          if (isWsError(event.reason)) {
+            event.preventDefault();
+            if (typeof event.stopImmediatePropagation === 'function') {
+              event.stopImmediatePropagation();
+            }
+          }
+        }, true);
+        window.addEventListener('error', function (event) {
+          if (isWsError(event.message) || isWsError(event.error)) {
+            event.preventDefault();
+            if (typeof event.stopImmediatePropagation === 'function') {
+              event.stopImmediatePropagation();
+            }
+          }
+        }, true);
+      })();
+    </script>
+    <meta name="description" content="Ubah materi pembelajaran menjadi soal ujian berkualitas dengan AI dan buat kuis Google Form secara otomatis." />
+    <meta property="og:title" content="Remix AI Pembuat Soal Guru v2" />
+    <meta property="og:description" content="Ubah materi pembelajaran menjadi soal ujian berkualitas dengan AI dan buat kuis Google Form secara otomatis." />
+    <meta property="og:type" content="website" />
+    <!-- PWA & Mobile Web Capabilities -->
+    <meta name="theme-color" content="#1d4ed8" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+    <meta name="apple-mobile-web-app-title" content="Soal Guru" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="icon" type="image/svg+xml" href="/icon.svg" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon.png" />
+    <link rel="alternate icon" href="/favicon.ico" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@500;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
+    <script type="module" crossorigin src="/assets/index-DZhfUcPV.js"></script>
+    <link rel="stylesheet" crossorigin href="/assets/index-BM1fSuZV.css">
+  <link rel="manifest" href="/manifest.webmanifest"></head>
+  <body class="bg-slate-50 text-slate-900 antialiased font-sans">
+    <div id="root"></div>
+  </body>
+</html>
+
